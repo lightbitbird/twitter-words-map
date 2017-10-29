@@ -1,0 +1,8 @@
+<h3>Top Words</h3>
+<div class="grid grid-pad">
+  <div *ngFor="let word of words" (click)="gotoDetail(word)" class="col-1-4">
+    <div class="module hero">
+      <h4>{{word.name}}</h4>
+    </div>
+  </div>
+</div>

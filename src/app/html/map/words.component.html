@@ -1,0 +1,24 @@
+<h2>Twitter Words</h2>
+<ul class="heroes">
+  <li *ngFor="let word of words" (click)="onSelect(word)" [class.selected]="word === selectedWord" style="width:600px">
+    <span class="hero-element">
+      <span class="badge">{{word.id}}</span> {{word.name}}
+    </span>
+    <button class="delete-button" (click)="deleteWord(word, $event)">Delete</button>
+  </li>
+</ul>
+
+<div class="error" *ngIf="error">{{error}}</div>
+<!--
+<button (click)="addWord()">Add New Word</button>
+<div *ngIf="addingWord">
+  <my-word-detail (close)="close($event)"></my-word-detail>
+</div>
+-->
+
+<div *ngIf="selectedWord">
+  <h2>
+    {{selectedWord.name | uppercase}}
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>

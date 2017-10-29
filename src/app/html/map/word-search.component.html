@@ -1,0 +1,10 @@
+<div id="search-component">
+  <h4>Word Search</h4>
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+  <div>
+    <div *ngFor="let word of words | async"
+         (click)="gotoDetail(word)" class="search-result" >
+      {{word.name}}
+    </div>
+  </div>
+</div>

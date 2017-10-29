@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<h1>{{ title }}</h1>
+
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<sebm-google-map
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  [zoomControl]="false"
+  (mapClick)="mapClicked($event)">
+
+  <sebm-google-map-marker
+    *ngFor="let m of markers; let i = index"
+    (markerClick)="clickedMarker(m.label, i)"
+    [latitude]="m.lat"
+    [longitude]="m.lng"
+    [label]="m.place"
+    [markerDraggable]="m.draggable"
+    (dragEnd)="markerDragEnd(m, $event)">
+
+    <sebm-google-map-info-window>
+      <span  *ngFor="let w of m.words; let j = index">
+        <strong >{{w.name}}, </strong>
+      </span>
+    </sebm-google-map-info-window>
+
+  </sebm-google-map-marker>
+
+  <sebm-google-map-circle [latitude]="lat + 0.3" [longitude]="lng"
+                          [radius]="5000"
+                          [fillColor]="'red'"
+                          [circleDraggable]="true"
+                          [editable]="true">
+  </sebm-google-map-circle>
+
+</sebm-google-map>
+</body>
+</html>
+
